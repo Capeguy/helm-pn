@@ -1,0 +1,8 @@
+cloudflareSecret:
+  create: true
+  apiKey: "my_cloudflare_api_key"
+
+grafanaSecret:
+  create: true
+  user: "admin"
+  password: "my_grafana_password"

@@ -1,0 +1,31 @@
+websocketsSelector: testnet
+deploymentName: testnetDeployment
+
+domain: polkadot.w3f.tech
+
+nodeKey: "0000000000000000000000000000000000000000000000000000000000000001"
+key: "my-session-key"
+
+cloudflareEmail: "my_cloudflare_email"
+
+local: false
+
+bootNodeP2PPort: 30333
+validatorBootNodeP2PPort: 30101
+
+monitoring: false
+
+includeValidatorBootNode: false
+
+grafana:
+  whiteListSourceRange: "0.0.0.0/0"
+  namespace: default
+
+createCertIssuer: true
+createWebsocketsCertificate: true
+createWebsocketsService: true
+createWebsocketsIngress: true
+createBootNodeService: true
+
+alertRulesLabels:
+  app: polkadot

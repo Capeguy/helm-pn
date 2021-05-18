@@ -1,0 +1,18 @@
+{{ if .Values.includeValidatorBootNode -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "polkadot-deployer.externalValidatorService" . }}
+  labels:
+    app: {{ .Release.Name }}
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: {{ include "polkadot-deployer.p2pValidatorDomain" . }}.
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - port: {{ .Values.validatorBootNodeP2PPort }}
+    name: p2p
+  selector:
+    node: polkadot-node-1
+  type: LoadBalancer
+{{ end }}

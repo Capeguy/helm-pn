@@ -1,0 +1,39 @@
+{{ if .Values.monitoring }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+{{ toYaml .Values.alertRulesLabels | indent 4 }}
+  name: prometheus-operator
+spec:
+  groups:
+  - name: prometheus-operator
+    rules:
+    - alert: PrometheusOperatorAlertmanagerReconcileErrors
+      annotations:
+        message: Errors while reconciling Alertmanager in {{`{{ $labels.namespace }}`}} Namespace.
+      expr: |
+        rate(prometheus_operator_reconcile_errors_total{job="prometheus-operator-operator",controller="alertmanager"}[5m]) > 0.1
+      for: 10m
+      labels:
+        severity: warning
+        origin: {{ .Values.deploymentName }}
+    - alert: PrometheusOperatorPrometheusReconcileErrors
+      annotations:
+        message: Errors while reconciling Prometheus in {{`{{ $labels.namespace }}`}} Namespace.
+      expr: |
+        rate(prometheus_operator_reconcile_errors_total{job="prometheus-operator-operator",controller="prometheus"}[5m]) > 0.1
+      for: 10m
+      labels:
+        severity: warning
+        origin: {{ .Values.deploymentName }}
+    - alert: PrometheusOperatorNodeLookupErrors
+      annotations:
+        message: Errors while reconciling Prometheus in {{`{{ $labels.namespace }}`}} Namespace.
+      expr: |
+        rate(prometheus_operator_node_address_lookup_errors_total{job="prometheus-operator-operator",controller="prometheus"}[5m]) > 0.1
+      for: 10m
+      labels:
+        severity: warning
+        origin: {{ .Values.deploymentName }}
+{{ end }}

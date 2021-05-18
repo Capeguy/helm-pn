@@ -1,0 +1,24 @@
+{{ if .Values.createWebsocketsIngress -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-websockets
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/limit-rps: "10"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+spec:
+  tls:
+  - hosts:
+      - {{ include "polkadot-deployer.websocketsDomain" . }}
+    secretName: {{ include "polkadot-deployer.tlsSecretName" . }}
+  rules:
+  - host: {{ include "polkadot-deployer.websocketsDomain" . }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ include "polkadot-deployer.websocketService" . }}
+          servicePort: 9944
+{{ end }}

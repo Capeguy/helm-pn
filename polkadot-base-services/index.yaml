@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  polkadot-base-services:
+  - apiVersion: v2
+    created: "2021-05-18T09:26:53.888691899Z"
+    description: Base services for Polkadot Node chart.
+    digest: 4a011064db7124aeab6a4b6f90f393d191a1ffdd39f54e6c400998fbee23d5b6
+    name: polkadot-base-services
+    urls:
+    - https://capeguy.github.io/helm-pn/polkadot-base-services-v0.34.1.tgz
+    version: v0.34.1
+generated: "2021-05-18T09:26:53.886003961Z"

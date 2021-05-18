@@ -1,0 +1,18 @@
+{{ if and (not .Values.local) (.Values.createBootNodeService) -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "polkadot-deployer.externalBootNodeService" . }}
+  labels:
+    app: {{ .Release.Name }}
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: {{ include "polkadot-deployer.p2pDomain" . }}.
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - port: {{ .Values.bootNodeP2PPort }}
+    name: p2p
+  selector:
+    node: polkadot-node-0
+  type: LoadBalancer
+{{ end }}

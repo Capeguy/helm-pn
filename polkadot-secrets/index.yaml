@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  polkadot-secrets:
+  - apiVersion: v2
+    created: "2021-05-18T09:27:33.94209521Z"
+    description: Polkadot secrets
+    digest: 3d7854afb11146ba5e808098716d1ff3b72605afae93d3de710e7f9640eac940
+    name: polkadot-secrets
+    urls:
+    - https://capeguy.github.io/helm-pn/polkadot-secrets-v0.34.1.tgz
+    version: v0.34.1
+generated: "2021-05-18T09:27:33.941633854Z"

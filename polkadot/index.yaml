@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  polkadot:
+  - apiVersion: v2
+    created: "2021-05-18T09:25:41.324730926Z"
+    description: Polkadot Node chart.
+    digest: fcc0f9f6c5e9601b132bdaa9c4b6028d76167462c865493657e98c47100e8699
+    name: polkadot
+    urls:
+    - https://capeguy.github.io/helm-pn/polkadot-v0.34.1.tgz
+    version: v0.34.1
+generated: "2021-05-18T09:25:41.323230528Z"
